@@ -1,0 +1,691 @@
+<!doctype html>
+<!-- =========================================================
+     FILE: index.html — PAGE STRUCTURE (HTML)
+     PURPOSE: Defines the content and semantic structure only.
+
+     SECTION MAP:
+       1. Document metadata and stylesheet links
+       2. Global QCU C.O.S.T. navbar and hero image
+       3. Kainah Diner identity, breadcrumb, and shop information
+       4. Category selector and food menu
+       5. Cart panel and checkout form
+       6. Contact information
+       7. Expandable ratings and sample reviews
+       8. Other canteen shops and site footer
+       9. Order confirmation and pickup-status screen
+
+     RELATED FILES:
+       - style.css  = layout, colors, typography, and responsive design
+       - script.js = cart, checkout, status, and category interactions
+     ========================================================= -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fff7e6" />
+    <title>Kainah Diner | QCU Canteen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#menu-view">Skip to menu</a>
+
+    <!-- PAGE SHELL: shared page width and background -->
+    <div id="app-container">
+      <main id="main-content">
+        <div id="menu-view">
+            <!-- GLOBAL NAVBAR: QCU C.O.S.T. pill overlays the hero and scrolls away with it -->
+            <header class="site-header">
+              <div class="site-header-inner">
+                <a class="brand" href="#menu-view" aria-label="QCU C.O.S.T. home">
+                  <span class="brand-qcu">QCU</span>
+                  <span class="brand-divider" aria-hidden="true"></span>
+                  <span class="brand-cost">C.O.S.T.</span>
+                </a>
+
+                <nav class="main-nav" aria-label="Main">
+                  <a href="#popular" aria-current="page">Menu</a>
+                  <a href="#reviews">About</a>
+                  <a href="#contact">Contact</a>
+                </nav>
+
+                <div class="header-actions">
+                  <a class="btn-login" id="login-link" href="#">
+                    <svg
+                      aria-hidden="true"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <circle cx="12" cy="8" r="4" />
+                      <path d="M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7Z" />
+                    </svg>
+                    <span>Log-in</span>
+                  </a>
+                  <button
+                    class="btn-cart"
+                    id="nav-cart-button"
+                    type="button"
+                    aria-label="View your order, 0 items"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.9"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M3 4h2.5l2.2 11h10.1l2-8H6.6" />
+                      <circle cx="9" cy="19.5" r="1.4" />
+                      <circle cx="17" cy="19.5" r="1.4" />
+                    </svg>
+                    <span>Cart(<span id="nav-cart-count">0</span>)</span>
+                  </button>
+                </div>
+              </div>
+            </header>
+
+          <!-- HERO IMAGE: photographic banner behind the global navbar -->
+          <section class="shop-hero" aria-label="Kainah Diner">
+            <img
+              class="shop-hero-image"
+              src="img/canteen2.jpg"
+              alt="Students seated in the QCU canteen"
+            />
+
+
+          </section>
+
+          <!-- SHOP INTRO: title, breadcrumb, description, rating, and shop information -->
+          <section class="shop-intro" aria-labelledby="shop-title">
+            <h1 id="shop-title">KAINAH DINER</h1>
+            <hr class="shop-title-accent" aria-hidden="true" />
+            <p class="shop-breadcrumb shop-breadcrumb-blue">
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                <circle cx="12" cy="10" r="2.5" />
+              </svg>
+              <span>QCU Canteen</span>
+              <span aria-hidden="true">/</span>
+              <span>Shop #2</span>
+            </p>
+            <p class="shop-description">
+              Pagkain shop serving Filipino comfort food and drinks. Order ahead for faster pickup.
+            </p>
+            <div class="shop-meta" aria-label="Shop rating and reviews">
+              <span class="shop-rating">
+                <svg
+                  class="rating-star"
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="m12 2.8 2.8 5.7 6.3.9-4.55 4.45 1.08 6.28L12 17.17l-5.63 2.96 1.08-6.28L2.9 9.4l6.3-.9L12 2.8Z"
+                  />
+                </svg>
+                <span><strong>4.8</strong> rating</span>
+              </span>
+              <span class="shop-reviews">
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H6l-3 2v-6a7.5 7.5 0 1 1 17-3.5Z"
+                  />
+                  <path
+                    d="M8 11h.01M12 11h.01M16 11h.01"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <span>120 reviews</span>
+              </span>
+            </div>
+            <ul class="shop-info" aria-label="Shop information">
+              <li><strong>Hours</strong> <span class="shop-info-value">7:00 AM - 4:30 PM</span></li>
+              <li><strong>Location</strong> <span class="shop-info-value">Main Canteen - Stall 2</span></li>
+              <li><strong>Average prep</strong> <span class="shop-info-value">10 minutes</span></li>
+            </ul>
+            <hr class="shop-info-accent" aria-hidden="true" />
+          </section>
+
+          <!-- SECTION 4A — CATEGORY SELECTOR: links to the menu sections -->
+          <nav class="category-nav" aria-label="Menu categories">
+            <a href="#popular" aria-current="location">Popular</a>
+            <a href="#rice-meals">Rice Meals</a>
+            <a href="#drinks">Drinks</a>
+          </nav>
+
+          <!-- SECTION 4B — ORDERING AREA: food menu and cart panel -->
+          <div class="ordering-layout">
+            <div class="menu-sections">
+              <section
+                class="menu-section"
+                id="popular"
+                aria-labelledby="popular-heading"
+              >
+                <div class="section-heading">
+                  <h2 id="popular-heading">Popular</h2>
+                </div>
+
+                <article class="menu-item" data-product-card="pork-sisig">
+                  <img
+                    class="item-image"
+                    src="img/sisig.jpg"
+                    alt="Pork sisig served with a sunny-side-up egg"
+                  />
+                  <div class="item-details">
+                    <h3>Pork Sisig with Egg</h3>
+                    <p>Crispy pork, sunny-side-up egg, rice.</p>
+                    <ul class="item-tags" aria-label="Dish labels">
+                      <li class="tag tag-best">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="m12 2.8 2.8 5.7 6.3.9-4.55 4.45 1.08 6.28L12 17.17l-5.63 2.96 1.08-6.28L2.9 9.4l6.3-.9L12 2.8Z" />
+                        </svg>
+                        Bestseller
+                      </li>
+                      <li class="tag tag-spicy">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M15.5 3.2c.9-.9 2.3-.9 3.2 0 .5.5.1 1.3-.6 1.3-.6 0-1 .3-1.4.8-.3.4-.4.9-.4 1.4 0 7-5 13.8-12 14.3-.8.1-1.2-.7-.7-1.3C8 17 7.5 13.8 9.6 10.7c1.2-1.8 2.9-3.1 4.4-4 .1-.6.3-1.3.9-1.8.2-.3.4-.5.6-.7Z" />
+                        </svg>
+                        Spicy
+                      </li>
+                    </ul>
+                    <span class="item-price">₱85.00</span>
+                  </div>
+                  <div class="item-actions">
+                    <span
+                      class="item-quantity"
+                      data-product-quantity="pork-sisig"
+                      aria-live="polite"
+                    ></span>
+                    <button
+                      class="add-btn"
+                      type="button"
+                      data-id="pork-sisig"
+                      data-name="Pork Sisig with Egg"
+                      data-price="85"
+                      aria-label="Add Pork Sisig with Egg to your order"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                </article>
+              </section>
+
+              <section
+                class="menu-section"
+                id="rice-meals"
+                aria-labelledby="rice-meals-heading"
+              >
+                <div class="section-heading">
+                  <h2 id="rice-meals-heading">Rice Meals</h2>
+                </div>
+
+                <article class="menu-item" data-product-card="fried-chicken">
+                  <img
+                    class="item-image"
+                    src="img/chicken.jpg"
+                    alt="Crispy fried chicken"
+                  />
+                  <div class="item-details">
+                    <h3>Fried Chicken Meal</h3>
+                    <p>1pc fried chicken, gravy, rice.</p>
+                    <ul class="item-tags" aria-label="Dish labels">
+                      <li class="tag tag-best">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="m12 2.8 2.8 5.7 6.3.9-4.55 4.45 1.08 6.28L12 17.17l-5.63 2.96 1.08-6.28L2.9 9.4l6.3-.9L12 2.8Z" />
+                        </svg>
+                        Bestseller
+                      </li>
+                    </ul>
+                    <span class="item-price">₱75.00</span>
+                  </div>
+                  <div class="item-actions">
+                    <span
+                      class="item-quantity"
+                      data-product-quantity="fried-chicken"
+                      aria-live="polite"
+                    ></span>
+                    <button
+                      class="add-btn"
+                      type="button"
+                      data-id="fried-chicken"
+                      data-name="Fried Chicken Meal"
+                      data-price="75"
+                      aria-label="Add Fried Chicken Meal to your order"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                </article>
+              </section>
+
+              <section
+                class="menu-section"
+                id="drinks"
+                aria-labelledby="drinks-heading"
+              >
+                <div class="section-heading">
+                  <h2 id="drinks-heading">Drinks</h2>
+                </div>
+
+                <article class="menu-item" data-product-card="iced-tea">
+                  <img
+                    class="item-image"
+                    src="img/icetea.jpg"
+                    alt="Glass of iced tea"
+                  />
+                  <div class="item-details">
+                    <h3>Iced Tea (Large)</h3>
+                    <ul class="item-tags" aria-label="Dish labels">
+                      <li class="tag tag-veg">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M20 3c-9 0-15 4-15 11 0 1.2.2 2.3.6 3.3L3 20l1.7.9 2-2.6c1 .5 2.1.7 3.3.7 7 0 10-6 10-16Z" />
+                        </svg>
+                        Vegan
+                      </li>
+                    </ul>
+                    <span class="item-price">₱25.00</span>
+                  </div>
+                  <div class="item-actions">
+                    <span
+                      class="item-quantity"
+                      data-product-quantity="iced-tea"
+                      aria-live="polite"
+                    ></span>
+                    <button
+                      class="add-btn"
+                      type="button"
+                      data-id="iced-tea"
+                      data-name="Iced Tea (Large)"
+                      data-price="25"
+                      aria-label="Add Iced Tea (Large) to your order"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                </article>
+
+                <article
+                  class="menu-item is-sold-out"
+                  data-product-card="mango-graham-shake"
+                >
+                  <img
+                    class="item-image"
+                    src="img/mangoshake.jpg"
+                    alt="Mango graham shake topped with cream"
+                  />
+                  <div class="item-details">
+                    <h3>Mango Graham Shake</h3>
+                    <ul class="item-tags" aria-label="Dish labels">
+                      <li class="tag tag-veg">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M20 3c-9 0-15 4-15 11 0 1.2.2 2.3.6 3.3L3 20l1.7.9 2-2.6c1 .5 2.1.7 3.3.7 7 0 10-6 10-16Z" />
+                        </svg>
+                        Vegetarian
+                      </li>
+                    </ul>
+                    <span class="item-price">₱45.00</span>
+                    <button
+                      class="add-btn sold-out"
+                      type="button"
+                      data-id="mango-graham-shake"
+                      data-name="Mango Graham Shake"
+                      data-price="45"
+                      disabled
+                    >
+                      Sold out
+                    </button>
+                  </div>
+                </article>
+              </section>
+            </div>
+
+            <!-- CART PANEL: selected items, special instructions, pickup time, and checkout -->
+            <aside class="cart-panel is-empty" id="cart-panel" aria-label="Your order">
+              <button
+                class="sheet-handle"
+                id="sheet-handle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="cart-content"
+              >
+                <span class="sheet-grabber" aria-hidden="true"></span>
+                <span class="sheet-summary">
+                  <span class="sheet-summary-text">
+                    <strong id="sheet-title">View order</strong>
+                    <span id="sheet-count">0 items</span>
+                  </span>
+                  <strong id="sheet-total">₱0.00</strong>
+                </span>
+              </button>
+
+              <div class="cart-panel-content" id="cart-content">
+                <div class="cart-header">
+                  <div class="cart-heading-group">
+                    <h2 id="cart-heading" tabindex="-1">Your order</h2>
+                    <span class="cart-item-count" id="cart-count">0 items</span>
+                  </div>
+                  <button
+                    class="clear-cart"
+                    id="clear-cart-button"
+                    type="button"
+                    hidden
+                  >
+                    Clear all
+                  </button>
+                </div>
+
+                <div class="cart-content">
+                  <ul
+                    class="cart-items"
+                    id="cart-items"
+                    aria-label="Items in your order"
+                    aria-live="polite"
+                    aria-relevant="additions removals text"
+                  ></ul>
+
+                  <form class="checkout-form" id="checkout-form" novalidate>
+                    <p class="cart-empty" id="cart-empty">
+                      No meals in your order yet.
+                    </p>
+                    <div class="notes-field">
+                      <label for="special-instructions"
+                        >Instructions</label
+                      >
+                      <textarea
+                        id="special-instructions"
+                        name="specialInstructions"
+                        rows="3"
+                        maxlength="200"
+                        placeholder="e.g. No onions, extra sauce, allergic to peanuts"
+                        aria-describedby="notes-count"
+                      ></textarea>
+                      <p class="field-help notes-count" id="notes-count">0/200</p>
+                    </div>
+
+                    <div class="pickup-field">
+                      <label for="pickup-time"
+                        >Pickup time
+                        <span aria-hidden="true">*</span></label
+                      >
+                      <input
+                        id="pickup-time"
+                        name="pickupTime"
+                        type="time"
+                        required
+                        aria-describedby="pickup-help pickup-error"
+                      />
+                      <p class="field-help" id="pickup-help">
+                        Choose a time before confirming your order.
+                      </p>
+                      <p
+                        class="field-error"
+                        id="pickup-error"
+                        role="alert"
+                        hidden
+                      >
+                        Please choose an advance pickup time.
+                      </p>
+                    </div>
+
+                    <div class="cart-totals" aria-live="polite">
+                      <div class="total-row total-due">
+                        <span>Total</span>
+                        <strong id="drawer-total">₱0.00</strong>
+                      </div>
+                    </div>
+
+                    <div class="cart-actions">
+                      <button class="cart-close-btn" id="close-cart-button" type="button">
+                        Close
+                      </button>
+                      <button
+                        class="confirm-btn"
+                        id="confirm-order-button"
+                        type="submit"
+                        disabled
+                      >
+                        Confirm order
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </aside>
+          </div>
+
+          <!-- SECTION 6 — CUSTOMER FEEDBACK + CONTACT: one shared card -->
+          <section class="feedback-contact-section" aria-label="Customer feedback and contact information">
+            <!-- LEFT: ratings and expandable customer reviews -->
+            <section class="reviews-section" id="reviews" aria-labelledby="reviews-heading">
+              <div class="support-section-heading">
+                <p class="section-eyebrow">CUSTOMER FEEDBACK</p>
+                <h2 id="reviews-heading">Ratings &amp; Reviews</h2>
+              </div>
+
+              <details class="reviews-details">
+                <summary class="reviews-summary">
+                  <span class="reviews-summary-main">
+                    <span class="reviews-rating-block">
+                      <strong class="reviews-average">4.8<small>/5</small></strong>
+                      <span class="reviews-rating-stars" aria-label="4.8 out of 5 stars">★★★★★</span>
+                      <span class="reviews-caption">Sample rating overview · 120 reviews</span>
+                    </span>
+                  </span>
+                  <span class="reviews-expand-label">Read reviews <span aria-hidden="true">⌄</span></span>
+                </summary>
+
+                <div class="reviews-content">
+                  <div class="reviews-content-heading">
+                    <h3>Customer reviews</h3>
+                    <span>Sample entries</span>
+                  </div>
+
+                  <article class="customer-review">
+                    <div class="review-topline">
+                      <strong>Alex M.</strong>
+                      <span class="review-stars" aria-label="5 out of 5 stars">★★★★★</span>
+                    </div>
+                    <p>“The Pork Sisig with Egg was flavorful, and the serving was satisfying.”</p>
+                    <span class="review-date">Sample review</span>
+                  </article>
+
+                  <article class="customer-review">
+                    <div class="review-topline">
+                      <strong>Jamie R.</strong>
+                      <span class="review-stars" aria-label="5 out of 5 stars">★★★★★</span>
+                    </div>
+                    <p>“Ordering ahead made pickup more convenient. The process was easy to follow.”</p>
+                    <span class="review-date">Sample review</span>
+                  </article>
+
+                  <article class="customer-review">
+                    <div class="review-topline">
+                      <strong>Morgan T.</strong>
+                      <span class="review-stars" aria-label="4 out of 5 stars">★★★★☆</span>
+                    </div>
+                    <p>“The iced tea was refreshing and paired well with the meal.”</p>
+                    <span class="review-date">Sample review</span>
+                  </article>
+                </div>
+              </details>
+              <p class="sample-content-note">Sample ratings and reviews — replace with verified customer feedback before launch.</p>
+            </section>
+
+            <!-- RIGHT: compact contact details, right-aligned within the shared card -->
+            <section class="contact-section" id="contact" aria-labelledby="contact-heading">
+              <div class="support-section-heading">
+                <h2 id="contact-heading">Get in touch</h2>
+                <p class="contact-description">Contact Us!</p>
+              </div>
+
+              <ul class="contact-list" aria-label="Kainah Diner contact details">
+                <li class="contact-row">
+                  <a class="contact-value" href="tel:+639000000000">+63 900 000 0000</a>
+                  <span class="contact-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M7 3h3l2 5-2 1.5a15 15 0 0 0 4.5 4.5L16 12l5 2v3c0 1.1-.9 2-2 2C10.7 19 5 13.3 5 6c0-1.7.9-3 2-3Z" />
+                    </svg>
+                  </span>
+                </li>
+                <li class="contact-row">
+                  <a class="contact-value" href="mailto:kainahdiner@example.com">kainahdiner@example.com</a>
+                  <span class="contact-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="5" width="18" height="14" rx="2" />
+                      <path d="m3 7 9 6 9-6" />
+                    </svg>
+                  </span>
+                </li>
+                <li class="contact-row">
+                  <span class="contact-value">Message us on Facebook</span>
+                  <span class="contact-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 11.5a8.4 8.4 0 0 1-8.7 8.4 9.2 9.2 0 0 1-3.8-.8L3 21l1.9-4.6a8.2 8.2 0 0 1-1.6-4.9A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5Z" />
+                      <path d="M8 12h.01M12 12h.01M16 12h.01" stroke-linecap="round" />
+                    </svg>
+                  </span>
+                </li>
+                <li class="contact-row">
+                  <span class="contact-value">Main Canteen - Stall 2</span>
+                  <span class="contact-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                      <circle cx="12" cy="10" r="2.5" />
+                    </svg>
+                  </span>
+                </li>
+              </ul>
+            </section>
+          </section>
+
+          <!-- SECTION 8 — OTHER SHOPS: upcoming canteen stall previews -->
+          <section class="more-shops" aria-labelledby="more-shops-heading">
+            <h2 id="more-shops-heading">More canteen shops</h2>
+            <div class="shop-options">
+              <article class="shop-option">
+                <span class="shop-option-number">SHOP #1</span>
+                <h3>Brew &amp; Bite</h3>
+                <span class="shop-status">Coming soon</span>
+              </article>
+              <article class="shop-option">
+                <span class="shop-option-number">SHOP #3</span>
+                <h3>QCU Juice Bar</h3>
+                <span class="shop-status">Coming soon</span>
+              </article>
+            </div>
+          </section>
+
+          <!-- SITE FOOTER: canteen and shop identification -->
+          <footer class="site-footer">
+            <p>Kainah Diner · QCU Canteen · Main Canteen - Stall 2</p>
+          </footer>
+        </div>
+
+        <!-- ORDER STATUS SCREEN: confirmation, order summary, and pickup progress -->
+        <section
+          class="status-screen"
+          id="status-screen"
+          aria-labelledby="status-title"
+          hidden
+        >
+          <div class="status-card">
+            <p class="shop-breadcrumb shop-breadcrumb-blue">
+              QCU Canteen <span aria-hidden="true">/</span> Pickup tracker
+            </p>
+            <h1 id="status-title" tabindex="-1">
+              Your order is being prepared
+            </h1>
+            <p class="order-reference">
+              Order <strong id="order-number">#1042</strong>
+              <span aria-hidden="true">·</span> Kainah Diner
+            </p>
+
+            <ul
+              class="order-summary"
+              id="order-summary"
+              aria-label="Items in your order"
+            ></ul>
+
+            <p class="order-total">
+              Order total: <strong id="order-total">₱0.00</strong>
+            </p>
+
+            <ol class="status-tracker" id="tracker" aria-label="Order progress">
+              <li class="is-complete" data-status-step="pending">
+                <span class="step-marker" aria-hidden="true"></span>
+                <span class="step-name">Pending</span>
+              </li>
+              <li
+                class="is-current"
+                data-status-step="preparing"
+                aria-current="step"
+              >
+                <span class="step-marker" aria-hidden="true"></span>
+                <span class="step-name">Preparing</span>
+              </li>
+              <li data-status-step="ready">
+                <span class="step-marker" aria-hidden="true"></span>
+                <span class="step-name">Ready for pickup</span>
+              </li>
+            </ol>
+
+            <p class="status-message" id="status-message" aria-live="polite">
+              The shop is preparing your order.
+            </p>
+            <p class="pickup-summary">
+              Requested pickup time:
+              <strong id="requested-pickup-time">—</strong>
+            </p>
+            <p class="pickup-summary" id="notes-row" hidden>
+              Special instructions:
+              <strong id="order-notes"></strong>
+            </p>
+
+            <details class="prototype-controls" id="prototype-controls">
+              <summary>Prototype controls</summary>
+              <p>
+                For demonstration only. This control does not contact the shop.
+              </p>
+              <button
+                class="demo-ready-btn"
+                id="simulate-ready-button"
+                type="button"
+              >
+                Simulate order ready
+              </button>
+            </details>
+
+            <button class="new-order-btn" id="new-order-button" type="button">
+              Back to the menu
+            </button>
+          </div>
+        </section>
+      </main>
+
+      <div class="cart-backdrop" id="cart-backdrop" aria-hidden="true"></div>
+    </div>
+
+    <!-- JAVASCRIPT: cart interactions, checkout, and category navigation -->
+    <script src="script.js"></script>
+  </body>
+</html>
